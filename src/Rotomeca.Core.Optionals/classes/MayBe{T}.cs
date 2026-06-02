@@ -8,7 +8,12 @@ namespace Rotomeca.Core.Optionals
     /// <para>
     /// <see cref="MayBe{T}"/> fonctionne uniformément pour les types valeur et les types référence,
     /// là où <see cref="Nullable{T}"/> est limité aux types valeur et où le simple <c>T?</c>
-    /// ne distingue pas "valeur absente" de "valeur présente mais nulle".
+    /// ne permet pas de tester l'absence de valeur dans un contexte générique sans contrainte
+    /// (<c>where T : class</c>).
+    /// </para>
+    /// <para>
+    /// Une valeur <see langword="null"/> est toujours traitée comme absente :
+    /// <see cref="HasValue"/> sera <see langword="false"/>.
     /// </para>
     /// <para>
     /// Équivalent C# du type <c>T | null</c> de TypeScript dans <c>@rotomeca/utils</c>.
@@ -20,8 +25,7 @@ namespace Rotomeca.Core.Optionals
     /// <example>
     /// <code>
     /// MayBe&lt;string&gt; withValue = "hello";       // présent
-    /// MayBe&lt;string&gt; withNull  = (string?)null; // présent, valeur nulle
-    /// MayBe&lt;string&gt; empty     = MayBe&lt;string&gt;.None; // absent
+    /// MayBe&lt;string&gt; empty     = MayBe&lt;string&gt;.Null; // absent
     ///
     /// if (withValue.HasValue)
     ///     Console.WriteLine(withValue.Value); // → hello
@@ -48,7 +52,7 @@ namespace Rotomeca.Core.Optionals
         public T? Value => _value;
 
         /// <summary>
-        /// Indique si une valeur est présente, qu'elle soit nulle ou non.
+        /// Indique si une valeur non nulle est présente.
         /// </summary>
         public bool HasValue => _hasValue;
 
@@ -62,24 +66,14 @@ namespace Rotomeca.Core.Optionals
 
         /// <summary>
         /// Crée une instance contenant <paramref name="value"/>.
-        /// <see cref="HasValue"/> sera <see langword="true"/>, même si <paramref name="value"/>
+        /// <see cref="HasValue"/> sera <see langword="false"/> si <paramref name="value"/>
         /// est <see langword="null"/>.
         /// </summary>
-        /// <param name="value">Valeur à encapsuler, peut être <see langword="null"/>.</param>
+        /// <param name="value">Valeur à encapsuler.</param>
         public MayBe(T? value)
         {
             _value = value;
-            _hasValue = true;
-        }
-
-        /// <summary>
-        /// Constructeur privé permettant de contrôler explicitement <see cref="HasValue"/>.
-        /// Utilisé pour créer l'état vide.
-        /// </summary>
-        private MayBe(T? value, bool hasValue)
-        {
-            _value = value;
-            _hasValue = hasValue;
+            _hasValue = value is not null;
         }
 
         // ── Factories ────────────────────────────────────────────────────────
@@ -93,9 +87,12 @@ namespace Rotomeca.Core.Optionals
         /// <summary>
         /// Crée une instance contenant <paramref name="value"/>.
         /// </summary>
-        /// <param name="value">Valeur à encapsuler, peut être <see langword="null"/>.</param>
-        /// <returns>Un <see cref="MayBe{T}"/> avec <see cref="HasValue"/> à <see langword="true"/>.</returns>
-        public static MayBe<T> Some(T? value) => new(value, true);
+        /// <param name="value">Valeur à encapsuler.</param>
+        /// <returns>
+        /// Un <see cref="MayBe{T}"/> avec <see cref="HasValue"/> à <see langword="true"/>,
+        /// ou <see cref="Null"/> si <paramref name="value"/> est <see langword="null"/>.
+        /// </returns>
+        public static MayBe<T> Some(T? value) => new(value);
 
         // ── Extraction ───────────────────────────────────────────────────────
 
@@ -150,10 +147,11 @@ namespace Rotomeca.Core.Optionals
 
         /// <summary>
         /// Convertit implicitement une valeur de type <typeparamref name="T"/>
-        /// en <see cref="MayBe{T}"/> avec <see cref="HasValue"/> à <see langword="true"/>.
+        /// en <see cref="MayBe{T}"/>. Retourne <see cref="Null"/> si <paramref name="value"/>
+        /// est <see langword="null"/>.
         /// </summary>
         /// <param name="value">Valeur à encapsuler.</param>
-        public static implicit operator MayBe<T>(T? value) => new(value, true);
+        public static implicit operator MayBe<T>(T? value) => new(value);
 
         /// <summary>
         /// Convertit implicitement un <see cref="MayBe{T}"/> en sa valeur encapsulée.
