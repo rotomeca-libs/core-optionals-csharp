@@ -123,8 +123,8 @@ Rotomeca.Core.Optionals/
 | [![icon](https://avatars.githubusercontent.com/u/289747551?s=32&v=4)](https://www.nuget.org/packages/Rotomeca.Core.Optionals) | [`RotomecaLib`](https://github.com/rotomeca-libs) |C# | Tout les projets RotomecaLib |
 | | `Rotomeca.Core`                                                   | C#       | meta package pour Core.Collections et Core.Optionals      |
 | | `Rotomeca.Core.Collections`                                                   | C#       | type `RArray<T>`       |
-| | `Rotomeca.Core.Optionals`                                                   | C#         | Ce package — type optionnel `MayBe<T>`       |
-| | [`Rotomeca.Rop`](https://www.nuget.org/packages/Rotomeca.Rop)               | C#         | Railway Oriented Programming — `Result<T,E>` |
+| ![icon](https://github.com/rotomeca-libs/projects-pictures/blob/main/rotomeca-lib-csharp-32.png?raw=true) | `Rotomeca.Core.Optionals`                                                   | C#         | Ce package — type optionnel `MayBe<T>`       |
+| ![icon](https://github.com/rotomeca-libs/projects-pictures/blob/main/rotomeca-lib-csharp-32.png?raw=true)  | [`Rotomeca.Rop`](https://www.nuget.org/packages/Rotomeca.Rop)               | C#         | Railway Oriented Programming — `Result<T,E>` |
 | | [`@rotomeca/rop`](https://www.npmjs.com/package/@rotomeca/rop)              | TypeScript | Gestion d'erreurs typée                      |
 | | [`@rotomeca/utils`](https://www.npmjs.com/package/@rotomeca/utils)          | TypeScript | Fonctions pures, types brandés et helpers    |
 | | [`@rotomeca/event`](https://www.npmjs.com/package/@rotomeca/event)          | TypeScript | Système d'événements typés à la C#           |
