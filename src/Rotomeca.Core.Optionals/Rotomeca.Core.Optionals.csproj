@@ -24,31 +24,28 @@
     <!-- Métadonnées NuGet -->
     <PackageId>Rotomeca.Core.Optionals</PackageId>
     <PackageIcon>icon.png</PackageIcon>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Rotomeca</Authors>
     <Copyright>© Rotomeca</Copyright>
-    <Description></Description>
-    <PackageTags></PackageTags>
+    <Description>Type optionnel MayBe&lt;T&gt; pour C# qui représente une valeur présente ou absente
+      pour tout type, y compris dans les contextes génériques sans contrainte. null est toujours
+      traité comme absent.</Description>
+    <PackageTags>optional maybe nullable generic functional dotnet csharp rotomeca</PackageTags>
     <PackageLicenseExpression>ISC</PackageLicenseExpression>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/rotomeca-libs/core-optionals-csharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/rotomeca-libs/core-optionals-csharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>README.nuget.md</PackageReadmeFile>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
-  <!--<ItemGroup>
-        --><!-- README affiché
-  sur NuGet.org --><!--
-        <None Include="..\..\README.md" Pack="true" PackagePath="\" />
-    </ItemGroup>-->
+  <ItemGroup>
+    <None Include="assets\icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\README.nuget.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-    <!--<ProjectReference
-    Include="..\Rotomeca.Rop.Generators\Rotomeca.Rop.Generators.csproj"
-          OutputItemType="Analyzer"
-          ReferenceOutputAssembly="false" />-->
   </ItemGroup>
 </Project>

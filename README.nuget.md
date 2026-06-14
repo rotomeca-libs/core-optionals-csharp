@@ -1,6 +1,3 @@
-<div align="center">
-<img height="90" alt="rotomeca-lib-ts" src="https://raw.githubusercontent.com/rotomeca-libs/projects-pictures/494cadd82673710c227e454c08cabc41d089e0f8/rotomeca-lib-csharp.svg" />
-
 # Rotomeca.Core.Optionals
 
 [![NuGet version](https://img.shields.io/nuget/v/Rotomeca.Core.Optionals)](https://www.nuget.org/packages/Rotomeca.Core.Optionals)
@@ -14,8 +11,6 @@ Type optionnel `MayBe<T>` pour C# qui représente une valeur qui peut être **pr
 Une valeur `null` est toujours traitée comme **absente** : `MayBe<T>` se comporte comme `Nullable<T>`, mais pour n'importe quel `T`.
 
 Conçu pour s'aligner avec son équivalent TypeScript `MayBe<T>` dans [`@rotomeca/utils`](https://www.npmjs.com/package/@rotomeca/utils).
-
-</div>
 
 ## Installation
 
