@@ -253,6 +253,36 @@ public class MayBeTests
         }
     }
 
+    // ── ContinueIfNull ────────────────────────────────────────────────────────
+
+    public class ContinueIfNullTests
+    {
+        [Fact]
+        public void WhenPresent_ReturnsValue()
+        {
+            var maybe = MayBe<string>.Some("hello");
+            Assert.Equal("hello", maybe.ContinueIfNull(() => "fallback"));
+        }
+
+        [Fact]
+        public void WhenPresent_CallbackNotInvoked()
+        {
+            var maybe = MayBe<string>.Some("hello");
+            var invoked = false;
+
+            maybe.ContinueIfNull(() => { invoked = true; return "fallback"; });
+
+            Assert.False(invoked);
+        }
+
+        [Fact]
+        public void WhenAbsent_ReturnsCallbackResult()
+        {
+            var maybe = MayBe<string>.Null;
+            Assert.Equal("fallback", maybe.ContinueIfNull(() => "fallback"));
+        }
+    }
+
     // ── Deconstruct ───────────────────────────────────────────────────────────
 
     public class DeconstructTests
