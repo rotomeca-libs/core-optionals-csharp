@@ -209,6 +209,15 @@ namespace Rotomeca.Core.Optionals
         /// </summary>
         public static bool operator !=(MayBe<T> left, MayBe<T> right) => !left.Equals(right);
 
+        // ── Autre ─────────────────────────────────────────────────────────
+
+        /// <summary>
+        /// Chaîne avec une fonction si la valeur est null.
+        /// </summary>
+        /// <param name="callback">Fonction si null</param>
+        /// <returns>La valeur</returns>
+        public T ContinueIfNull(Func<T> callback) => IsEmpty || Value is null ? callback() : Value;
+
         // ── Affichage ─────────────────────────────────────────────────────────
 
         /// <inheritdoc/>
