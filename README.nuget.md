@@ -93,6 +93,9 @@ MayBe<T>.Null          // absent (= default)
 .GetValueOrElse(Func<T?> fallback)  // valeur ou résultat du délégué (lazy)
 .Deconstruct(out bool, out T?)      // var (has, val) = maybe;
 
+// Chaînage
+.ContinueIfNull(Func<T> callback)   // valeur ou résultat du callback si absent
+
 // Conversions implicites
 (MayBe<T>) ← T?      // null → absent, sinon présent
 (T?)        ← MayBe<T> // extrait la valeur (default si absent)
